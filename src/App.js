@@ -76,7 +76,20 @@ class App extends Component {
           contacts: contacts.filter(contact => contact.id !== contactId)
         })
       })
-  }
+  };
+
+  updateContact = (data) => {
+    const { contacts } =  this.state
+    const updatedContacts = contacts.map((contact) => {
+      if (contact.id === data.id) {
+        return { ...contact, ...data };
+      }
+      
+      return contact;
+    });
+
+    this.setState({ contacts: updatedContacts })
+  };
   
   render() {
     const {
@@ -92,7 +105,7 @@ class App extends Component {
         <h1>Contact App</h1>
         
         <AddContactForm onFormSubmitted={this.postNewContact} />
-
+        
         {contacts.map((contact) => (
           <Contact 
             key={contact.id}
@@ -101,6 +114,7 @@ class App extends Component {
             phone={contact.phone}
             photo={contact.photo}
             onContactDelete={this.destroyContact}
+            onContactUpdate={this.updateContact}
           />
         ))}
         

@@ -17,6 +17,10 @@ class AddContactForm extends React.Component {
         const phone = form.phone.value
         
         const data = { name, phone }
+
+        if (!name || !phone) {
+          return
+        }
         
         this.props.onFormSubmitted(data)
           .then(() => {

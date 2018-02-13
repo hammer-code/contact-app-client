@@ -20,37 +20,45 @@ body {
   margin-right: 1rem;
 }
 
-.contact__detail {
-  float: left;
-  width: calc(70% - 1rem);
-}
-
 .contact__detail p {
   margin-top: 0;
 }
 
-.contact__remove-button {
+.contact-action {
   position: absolute;
   right: 1rem;
   top: 1rem;
+}
+
+.contact-action button {
+  margin-right: 10px;
+}
+
+.contact-action button:last-child {
+  margin-right: 0;
+}
+
+.contact__remove-button {
   border: 0;
   padding: 0.5rem;
   background-color: #f44336;
   color: #fff;
 }
 
-.add-contact-form {
+.contact__remove-button[disabled] {
+  background-color: #ff8279;
 }
 
-.add-contact-form__title {
-    
+.edit-contact-form, .contact__detail {
+  float: left;
+  width: calc(70% - 1rem);
 }
 
-.add-contact-form .input-group {
+.input-group {
     margin-bottom: .5rem;
 }
 
-.add-contact-form input {
+input {
   width: 100%;
   font-size: 1rem;
   box-sizing: border-box;
@@ -67,6 +75,10 @@ button {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
+}
+
+.add-contact-form {
+  margin-bottom: 20px;
 }
 
 .add-contact-form button {
