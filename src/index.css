@@ -77,6 +77,11 @@ button {
   border: 1px solid #ccc;
 }
 
+button[disabled] {
+  background-color: #ececec;
+  color: #8a8a8a;
+}
+
 .add-contact-form {
   margin-bottom: 20px;
 }

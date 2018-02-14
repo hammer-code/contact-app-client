@@ -79,16 +79,29 @@ class App extends Component {
   };
 
   updateContact = (data) => {
-    const { contacts } =  this.state
-    const updatedContacts = contacts.map((contact) => {
-      if (contact.id === data.id) {
-        return { ...contact, ...data };
-      }
-      
-      return contact;
-    });
+    const { contacts } =  this.state;
 
-    this.setState({ contacts: updatedContacts })
+    const headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+
+    return fetch(`${API_URL}/contacts/${data.id}`, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then((updatedContact) => {
+        const updatedContacts = contacts.map((contact) => {
+          if (contact.id === data.id) {
+            return updatedContact;
+          }
+          
+          return contact;
+        });
+
+        this.setState({ contacts: updatedContacts })
+      })
   };
   
   render() {

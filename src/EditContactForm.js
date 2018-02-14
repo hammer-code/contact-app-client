@@ -7,6 +7,7 @@ class EditContactForm extends Component {
     this.state = {
       name: props.name,
       phone: props.phone,
+      updating: false,
     }
   }
 
@@ -24,12 +25,14 @@ class EditContactForm extends Component {
     
     const data = { id, name, phone };
 
-    this.props.onSubmitted(data);
+    this.setState({ updating: true });
+
+    this.props.onSubmitted(data)
   }
   
   render() {
 
-    const { name, phone  } = this.state;
+    const { name, phone, updating } = this.state;
 
     return (
       <form onSubmit={this.handleFormSubmit} className="edit-contact-form">
@@ -41,7 +44,7 @@ class EditContactForm extends Component {
           <label>Phone</label>
           <input className="form-control" onChange={this.updateInput('phone')} name="phone" value={phone} />
         </div>
-        <button type="submit">Update</button>
+        <button type="submit" disabled={updating}>{updating ? 'Updating...' : 'Update'}</button>
       </form>
     );
   }

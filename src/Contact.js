@@ -59,9 +59,10 @@ class Contact extends React.Component {
               name={props.name}
               phone={props.phone}
               onSubmitted={(data) => {
-                this.props.onContactUpdate(data);
-                
-                this.setState({ editing: false });
+                return this.props.onContactUpdate(data)
+                  .then(() => {
+                    this.setState({ editing: false });
+                  });
               }}
             />
           )
